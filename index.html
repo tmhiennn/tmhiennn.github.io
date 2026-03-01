@@ -1,1 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hien Tran — Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+      display: flex;
+      line-height: 1.6;
+    }
+  
+    .sidebar {
+      width: 300px;
+      background-color: #2c2c2c;
+      padding: 30px;
+      border-radius: 20px;
+      margin: 20px;
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+    }
+
+    .sidebar img {
+      width: 150px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .sidebar h1 {
+      color: #ffffff;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .sidebar p {
+      margin-bottom: 10px;
+      color: #b0b0b0;
+    }
+
+    .sidebar a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #4a9eff;
+      text-decoration: underline;
+    }
+    
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      max-width: 1200px;
+    }
+    
+    .nav-box {
+      display: flex;
+      gap: 30px;
+      background-color: #2c2c2c;
+      padding: 20px 40px;
+      border-radius: 20px;
+      align-items: center;
+    }
+    
+    .nav-box a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-box a:hover {
+      color: #00bcd4;
+    }
+    
+    .section {
+      background-color: #2c2c2c;
+      padding: 40px;
+      border-radius: 15px;
+      margin-top: 20px;
+      color: #ffffff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.2);
+    }
+    
+    h1, h2, h3 {
+      color: #ffffff;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      border-bottom: 3px solid #00bcd4;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    h3 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #00bcd4;
+      font-size: 1.4rem;
+    }
+
+    h4 {
+      color: #00bcd4;
+      margin-bottom: 10px;
+    }
+
+    p, li {
+      color: #d0d0d0;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+    
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #4a9eff;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .skill-category {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #444;
+    }
+
+    /* Project Cards */
+    .project-card {
+      background-color: #1e1e1e;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 4px solid #00bcd4;
+    }
+
+    .project-links {
+      margin-top: 10px;
+    }
+
+    .project-links a {
+      display: inline-block;
+      background-color: #00bcd4;
+      color: #1e1e1e;
+      padding: 8px 15px;
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-top: 10px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .project-links a:hover {
+      background-color: #4a9eff;
+    }
+
+    /* Contact Form */
+    .contact-section {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+    
+    .contact-form {
+      background: #1e1e1e;
+      padding: 40px;
+      width: 100%;
+      border: 1px solid #444;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+    
+    .contact-form h2 {
+      color: #ffffff;
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #f0f0f0;
+      font-size: 0.95rem;
+    }
+    
+    .form-group input, 
+    .form-group textarea {
+      padding: 12px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+      background-color: #2c2c2c;
+      color: #ffffff;
+      transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus, 
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #00bcd4;
+      box-shadow: 0 0 8px rgba(0, 188, 212, 0.4);
+    }
+    
+    .send-button {
+      background-color: #00bcd4;
+      color: #1e1e1e;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    .send-button:hover {
+      background-color: #4a9eff;
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 968px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: calc(100% - 40px);
+        position: static;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-box {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .section {
+        padding: 25px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+    
+  </style>
+</head>
+  
+<body>
+  <div class="sidebar">
+    <img src="profile.jpeg" alt="Hien Tran Profile Photo">
+    <h1>Hien Tran</h1>
+    <p>Computer Science Student</p>
+    <p><strong>Email:</strong> tmhien.tran0411@gmail.com</p>
+    <p><strong>Location:</strong> San Diego, CA</p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/tmhien0411" target="_blank">tmhien0411</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Profile</a></p>
+  </div>
+  
+  <div class="main-content">
+    <nav class="nav-box">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="resume.pdf" target="_blank">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav> 
+    
+    <div class="section" id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm a computer science student at UC San Diego interested in web development and human-centered technology. 
+        I transferred from Palomar College to UCSD, and transitioning into a university environment taught me 
+        the importance of adaptability and preparation. I'm motivated by solving problems that sit at the intersection of technology and 
+        people's experiences with a product.
+      </p>
+      <p>
+        I'm currently seeking internship opportunities where I can continue learning and contribute to meaningful projects.
+        Outside of tech, I enjoy cooking and spending time with my family.
+      </p>
+    </div>
+
+    <div class="section" id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4>Languages</h4>
+          <p>Python, JavaScript, HTML/CSS, ARM Assembly, SQL</p>
+        </div>
+        <div class="skill-category">
+          <h4>Frameworks & Libraries</h4>
+          <p>Flask, React (learning), TensorFlow</p>
+        </div>
+        <div class="skill-category">
+          <h4>Tools & Technologies</h4>
+          <p>Git, GitHub, VS Code, APIs, JSON, Computer Vision</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>What I'm Working On</h2>
+      
+      <h3>🌐 Web Development</h3>
+      <ul>
+        <li><strong>Facial Analysis Web App (Smart Mirror):</strong> Building a responsive and accessible facial analysis web application using HTML, CSS, JavaScript, and Flask that captures user images with and without beauty filters, then utilizes computer vision APIs to detect demographic attributes (race, gender, age) and emotional expressions. This project explores ethical considerations and potential biases in AI-based facial recognition systems, particularly examining how filters may affect AI predictions.</li>
+      </ul>
+      
+      <h3>💻 Software Projects</h3>
+      <ul>
+        <li><strong>Caption Generator:</strong> Developing an AI-powered image caption generator that uses computer vision and natural language processing to automatically generate descriptive captions for images, improving accessibility and content discovery.</li>
+      </ul>
+      
+      <h3>🔬 Academic Research</h3>
+      <ul>
+        <li><strong>Rural Labor & Education:</strong> Exploring rural labor cycles and structural barriers that limit educational opportunities, revealing how resource-dependent work affects rural communities. This research examines how young people struggle to find stable employment outside extractive industries, how limited educational access increases community vulnerability, and how resource dependence creates long-term environmental and economic challenges for rural families.</li>
+        <li><strong>Smart Mirror Project:</strong> Developing an interactive smart mirror to educate users about the importance of AI bias and fairness in facial recognition technology. This project demonstrates how AI systems can perpetuate existing biases and aims to raise awareness about the need for more equitable and transparent AI development.</li>
+      </ul>
+      
+      <h3>📈 Portfolio Growth</h3>
+      <ul>
+        <li>Actively expanding my portfolio with new projects and collaborative work</li>
+        <li>Contributing to open-source projects</li>
+      </ul>
+    </div>
+    
+    <div class="section" id="projects">
+      <h2>Featured Projects</h2>
+      
+      <div class="project-card">
+        <h3>Smart Mirror - AI Bias Education Tool</h3>
+        <p><em>UC San Diego - Computer Vision & Machine Learning</em></p>
+        <ul>
+          <li>Designed and built the frontend interface for a user study on AI fairness</li>
+          <li>Integrated CV/ML models (FairFace & DeepFace) to analyze visual data</li>
+          <li>Studied how beauty filters affect AI predictions</li>
+          <li>Conducted user research on AI fairness and privacy concerns</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/smart-mirror" target="_blank">GitHub</a>
+          <a href="#" target="_blank">Live Demo</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>AI Caption Generator</h3>
+        <p><em>Python, TensorFlow, Computer Vision</em></p>
+        <ul>
+          <li>Developed an AI-powered image caption generator using computer vision and NLP</li>
+          <li>Implemented neural network models for image feature extraction</li>
+          <li>Improving accessibility and content discovery through automated captions</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/caption-generator" target="_blank">GitHub</a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <h3>Classic Games in ARM Assembly</h3>
+        <p><em>ARM Assembly, Raspberry Pi</em></p>
+        <ul>
+          <li>Developed Bulgarian Solitaire, Hangman, Mastermind, and Magic Squares</li>
+          <li>Programmed low-level operations on Raspberry Pi</li>
+          <li>Worked directly with registers, memory operations, and low-level control flow</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/arm-games" target="_blank">GitHub</a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <h3>Pokémon Pokédex</h3>
+        <p><em>Python, REST API, JSON</em></p>
+        <ul>
+          <li>Developed a Pokémon Pokédex application utilizing JSON to retrieve and display Pokémon data in real-time</li>
+          <li>Used Python libraries to send HTTP requests and handle JSON responses from the Pokémon API</li>
+          <li>Implemented search and filter functionality for user-friendly data exploration</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/pokedex" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="contact">
+      <h2>Get In Touch</h2>
+      <div class="contact-section">
+        <div class="contact-form">
+          <h2>Send Me a Message</h2>
+          <!-- Replace with your Formspree endpoint or other email service -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" name="name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" name="email" placeholder="john@example.com" required>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" name="subject" placeholder="How can I help?" required>
+            </div>
+    
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" rows="6" placeholder="Write your message here..." required></textarea>
+            </div>
+    
+            <button type="submit" class="send-button">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
